@@ -1,0 +1,232 @@
+
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user's profile with their health details and preferences.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User's display name."
+        },
+        "age": {
+          "type": "number",
+          "description": "User's age in years."
+        },
+        "weight": {
+          "type": "number",
+          "description": "User's weight in kilograms."
+        },
+        "height": {
+          "type": "number",
+          "description": "User's height in centimeters."
+        },
+        "activityLevel": {
+          "type": "string",
+          "enum": ["sedentary", "lightlyActive", "moderatelyActive", "veryActive", "extraActive"],
+          "description": "User's general physical activity level."
+        },
+        "workRoutine": {
+          "type": "string",
+          "enum": ["mostlySitting", "mixed", "mostlyPhysical"],
+          "description": "The user's typical work environment."
+        },
+        "goals": {
+          "type": "string",
+          "enum": ["weightLoss", "maintainWeight", "weightGain"],
+          "description": "User's fitness goals."
+        },
+        "dietaryRestrictions": {
+          "type": "string",
+          "description": "User's dietary restrictions or preferences (e.g., vegetarian, gluten-free)."
+        },
+        "location": {
+            "type": "string",
+            "description": "User's location (e.g., city, country) for local cuisine suggestions."
+        },
+        "mealsPerDay": {
+          "type": "number",
+          "description": "How many meals the user typically eats per day."
+        },
+        "mealTimes": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Typical times for meals, e.g., ['08:00', '13:00', '19:00']"
+        },
+        "diningOutFrequency": {
+          "type": "string",
+          "enum": ["rarely", "occasionally", "frequently"],
+          "description": "How often the user eats out."
+        },
+        "foodPreference": {
+          "type": "string",
+          "enum": ["home-cooked", "outside-food", "balanced"],
+          "description": "User's preference between home-cooked and outside food."
+        },
+        "alcoholConsumption": {
+          "type": "string",
+          "enum": ["none", "socially", "regularly"],
+          "description": "User's alcohol consumption habits."
+        },
+        "smokingHabits": {
+          "type": "string",
+          "enum": ["none", "occasionally", "regularly"],
+          "description": "User's smoking habits."
+        },
+        "medicalConditions": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "A list of pre-existing medical conditions."
+        },
+        "customMedicalConditions": {
+            "type": "string",
+            "description": "Any other medical conditions not in the list."
+        },
+        "waterIntakeGoal": {
+            "type": "number",
+            "description": "User's daily water intake goal in milliliters."
+        }
+      },
+      "required": [
+        "name",
+        "age",
+        "weight",
+        "height",
+        "activityLevel",
+        "workRoutine",
+        "goals",
+        "mealsPerDay",
+        "diningOutFrequency",
+        "foodPreference",
+        "alcoholConsumption",
+        "smokingHabits",
+        "waterIntakeGoal"
+      ]
+    },
+    "DietPlan": {
+      "title": "DietPlan",
+      "type": "object",
+      "description": "Represents a diet plan generated for a user.",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The ISO timestamp when the plan was created."
+        },
+        "content": {
+          "type": "string",
+          "description": "The full markdown content of the generated diet plan."
+        },
+        "profileSnapshot": {
+          "$ref": "#/entities/UserProfile"
+        }
+      },
+      "required": ["createdAt", "content", "profileSnapshot"]
+    },
+    "Meal": {
+      "title": "Meal",
+      "type": "object",
+      "description": "Represents a meal logged by the user.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the meal (e.g., Breakfast, Lunch)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The ISO timestamp when the meal was logged."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/entities/FoodItem"
+          }
+        }
+      },
+      "required": ["name", "createdAt", "items"]
+    },
+    "FoodItem": {
+      "title": "FoodItem",
+      "type": "object",
+      "description": "Represents a single food item with nutritional info.",
+      "properties": {
+        "name": { "type": "string" },
+        "calories": { "type": "number" },
+        "protein": { "type": "number" },
+        "carbohydrates": { "type": "number" },
+        "fat": { "type": "number" }
+      },
+      "required": ["name", "calories", "protein", "carbohydrates", "fat"]
+    },
+    "DailyLog": {
+        "title": "DailyLog",
+        "type": "object",
+        "description": "A log for a specific day containing meals and nutritional goals.",
+        "properties": {
+            "date": {
+                "type": "string",
+                "format": "date",
+                "description": "The date of the log in YYYY-MM-DD format."
+            },
+            "calorieGoal": { "type": "number" },
+            "proteinGoal": { "type": "number" },
+            "carbGoal": { "type": "number" },
+            "fatGoal": { "type": "number" },
+            "meals": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/entities/Meal"
+                }
+            },
+            "waterIntake": {
+                "type": "number",
+                "description": "Total water consumed in milliliters for the day."
+            }
+        },
+        "required": ["date", "calorieGoal", "proteinGoal", "carbGoal", "fatGoal", "meals", "waterIntake"]
+    },
+    "Streak": {
+        "title": "Streak",
+        "type": "object",
+        "description": "Tracks the user's consecutive days of meeting goals.",
+        "properties": {
+            "count": { "type": "number" },
+            "lastDate": { "type": "string", "format": "date" }
+        },
+        "required": ["count", "lastDate"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password"
+    ]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Stores the user's profile information. The {userId} MUST match request.auth.uid.",
+      "collections": {
+        "dietPlans": {
+          "path": "/users/{userId}/dietPlans/{planId}",
+          "schema": "DietPlan",
+          "description": "A collection of all diet plans generated for the user."
+        },
+        "dailyLogs": {
+          "path": "/users/{userId}/dailyLogs/{logId}",
+          "schema": "DailyLog",
+          "description": "A collection of daily meal logs for the user. {logId} should be in YYYY-MM-DD format."
+        },
+        "streak": {
+            "path": "/users/{userId}/streak/{streakId}",
+            "schema": "Streak",
+            "description": "The user's goal streak data. {streakId} should be 'current'."
+        }
+      }
+    }
+  }
+}
+
+    

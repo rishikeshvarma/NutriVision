@@ -1,0 +1,40 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-onboarding",
+      "description": "A vibrant collection of healthy foods like fruits and vegetables.",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxoZWFsdGh5JTIwZm9vZHxlbnwwfHx8fDE3NjIxMjM0MTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy food"
+    },
+    {
+      "id": "macros-card-bg",
+      "description": "A colorful assortment of healthy ingredients, like nuts, seeds, and grains.",
+      "imageUrl": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwaW5ncmVkaWVudHN8ZW58MHx8fHwxNzYyMTY5ODU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy ingredients"
+    },
+    {
+      "id": "calories-card-bg",
+      "description": "A top-down view of a healthy and colorful salmon salad bowl.",
+      "imageUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoZWFsdGh5JTIwbWVhbHxlbnwwfHx8fDE3NjIxNzAxODR8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy meal"
+    },
+    {
+      "id": "onboarding-lifestyle",
+      "description": "A collection of colorful beverage glasses on a bar counter.",
+      "imageUrl": "https://images.unsplash.com/photo-1551024709-8f23eda2c5a5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "beverages drinks"
+    },
+    {
+      "id": "onboarding-habits",
+      "description": "A person jogging on a path at sunset.",
+      "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "jogging sunset"
+    },
+    {
+      "id": "onboarding-medical",
+      "description": "A stethoscope and a heart shape on a clean background.",
+      "imageUrl": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "medical health"
+    }
+  ]
+}
