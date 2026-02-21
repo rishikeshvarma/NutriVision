@@ -1,0 +1,39 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Rules for the 'users' collection
+    match /users/{userId} {
+      // Profile can be read, created, and updated by the owner.
+      allow read, write: if isOwner(userId);
+      
+      // Diet plans can be read and created by the owner.
+      match /dietPlans/{planId} {
+        allow read, create: if isOwner(userId);
+        allow update: if false; // Plans are immutable
+        allow delete: if isOwner(userId); // Allow deletion
+      }
+
+      // Daily logs can be read and written to by the owner.
+      match /dailyLogs/{logId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Streak data can be read and written by the owner.
+      match /streak/{streakId} {
+          allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}
